@@ -1,0 +1,383 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@media (max-width: 410px) {
+    .btn,
+    .black_btn,
+    .outline_btn {
+      font-size: 18px;
+      font-weight: 400;
+      min-width: fit-content;
+      max-width: fit-content;
+      padding: 10px;
+    }
+  }
+  @media (max-width: 1320px) {
+    .navbar .logo {
+      flex: none;
+      width: fit-content;
+    }
+    .navbar .logo h4 {
+      font-size: 23px;
+    }
+    .navbar .logo img {
+      width: 75px;
+    }
+  }
+  @media (max-width: 1140px) {
+    .navbar {
+      flex-wrap: wrap;
+      height: 120px;
+      overflow-y: hidden;
+      transition: 0.3s;
+    }
+    .navbar .hamburger {
+      display: flex;
+      font-size: 24px;
+    }
+    .navbar .links {
+      order: 1;
+      width: 100%;
+      flex: none;
+      flex-direction: column;
+      gap: 20px;
+      padding-top: 20px;
+    }
+    .show_navbar {
+      height: 200px;
+      transition: 0.3s;
+    }
+  }
+  @media (max-width: 920px) {
+    .navbar {
+      padding: 20px;
+    }
+    header {
+      flex-wrap: wrap;
+    }
+  }
+  @media (max-width: 600px) {
+    .navbar .links ul {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .show_navbar {
+      height: 380px;
+      transition: 0.3s;
+    }
+  }
+  @media (max-width: 470px) {
+    .navbar .logo {
+      gap: 10px;
+    }
+    .navbar .logo h4 {
+      font-size: 18px;
+    }
+    .navbar .logo img {
+      width: 40px;
+    }
+    .navbar {
+      height: 75px;
+    }
+    .show_navbar {
+      height: 340px;
+      transition: 0.3s;
+    }
+  }
+  @media (max-width: 950px) {
+    .notfound .content h1 {
+      font-size: 3.5rem;
+    }
+  }
+  @media (max-width: 920px) {
+    .notfound {
+      padding: 40px 20px;
+      min-height: 400px;
+    }
+    .notfound .content {
+      min-height: 400px;
+    }
+  }
+  @media (max-width: 560px) {
+    .notfound .content h1 {
+      font-size: 2.5rem;
+    }
+    .notfound .content p {
+      text-align: center;
+    }
+  }
+  @media (max-width: 410px) {
+    .notfound .content h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 1112px) {
+    footer {
+      flex-wrap: wrap;
+      padding: 40px 40px 20px 40px;
+    }
+    footer div {
+      flex: none;
+      width: 50%;
+      margin-bottom: 30px;
+    }
+    footer div:first-child {
+      justify-content: flex-start;
+    }
+  }
+
+  @media (max-width: 606px) {
+    footer div:first-child {
+      justify-content: center;
+    }
+    footer div img {
+      width: 270px;
+    }
+    footer {
+      padding: 20px;
+    }
+    footer div {
+      width: 100%;
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+    }
+    .hero-content {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 1720px) {
+    .services {
+      min-width: 100%;
+      padding: 50px 20px;
+    }
+  }
+
+  @media (max-width: 1720px) {
+    .howItWorks {
+      padding: 50px 20px;
+    }
+  }
+  @media (max-width: 600px) {
+    .howItWorks .container .card {
+      padding: 20px;
+    }
+  }
+  @media (max-width: 1520px) {
+    .authPage {
+      min-width: 100%;
+    }
+  }
+  @media (max-width: 1030px) {
+    .authPage .container {
+      margin: 0 auto;
+    }
+  }
+  @media (max-width: 910px) {
+    .authPage .container form .wrapper {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 830px) {
+    .authPage {
+      min-height: 100vh;
+      height: auto;
+    }
+    .authPage .container {
+      flex: none;
+      width: 100%;
+      justify-content:center;
+      padding: 40px 20px;
+    }
+    .authPage .banner {
+      flex: none;
+      display: none;
+    }
+  }
+
+  @media (max-width: 920px) {
+    .jobs {
+      padding: 40px 20px;
+    }
+    .jobs .search-tab-wrapper {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 730px) {
+    .jobs .wrapper .filter-bar {
+      display: none;
+    }
+    .jobs .container {
+      width: 100%;
+    }
+    .jobs .container .jobs_container {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      border-top: 1px solid gray;
+      margin-top: 20px;
+    }
+    .mobile-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .mobile-filter select {
+      padding: 4px 8px;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .jobs .container .jobs_container .card {
+      padding: 20px 8px;
+    }
+    .mobile-filter select {
+      width: 100%;
+    }
+    .jobs .search-tab-wrapper input {
+      padding: 12px 55px 12px 8px;
+    }
+    .jobs .search-tab-wrapper button {
+      display: none;
+    }
+    .jobs .search-tab-wrapper svg {
+      display: block;
+    }
+  }
+
+  @media (max-width: 920px) {
+    .account {
+      padding: 40px 20px;
+      min-height: 800px;
+    }
+  }
+  @media (max-width: 712px) {
+    .account_components h3 {
+      margin-top: 27px;
+    }
+    .account .container .sidebar h4 {
+      color: #fff;
+    }
+    .account .component_header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+    .sidebar_icon {
+      display: flex;
+      width: fit-content;
+      padding: 5px;
+      border-radius: 100%;
+      position: relative;
+      bottom: -18px;
+    }
+    .move_left {
+      left: 0;
+      transition: 0.3s;
+      background: #111;
+      z-index: 2;
+    }
+    .move_right {
+      left: 252px;
+      transition: 0.3s;
+      background: #fff;
+      z-index: 2;
+    }
+    .move_right svg {
+      font-size: 30px;
+      color: #111;
+    }
+    .move_left svg {
+      font-size: 30px;
+      color: #fff;
+    }
+    .account .container {
+      position: relative;
+    }
+    .account .container .sidebar {
+      position: absolute;
+      transition: 0.3s;
+      left: -100%;
+    }
+    .account .container .showSidebar {
+      left: 0;
+      transition: 0.3s;
+      background: #111;
+      height: 100%;
+      width: 308px;
+      padding: 20px 5px;
+      z-index: 2;
+    }
+    .left_arrow {
+      transition: 0.3s;
+      transform: rotate(180deg);
+    }
+    .right_arrow {
+      transition: 0.3s;
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 512px) {
+    .save_change_btn_wrapper .btn {
+      width: 100%;
+    }
+    .account_components img {
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 1720px) {
+    .chatting {
+      padding: 30px 20px;
+      min-width: 100%;
+    }
+  }
+  @media (max-width: 670px) {
+    .chatting .container {
+      min-width: 100%;
+    }
+  }
+  @media (max-width: 550px) {
+    .chatting .container .messages .receiver {
+      margin-left: 0;
+    }
+  
+    .chatting .container .messages .sender {
+      margin-right: 0;
+    }
+  }
+
+  @media (max-width: 1520px) {
+    .application_page {
+      min-width: 100%;
+      padding: 20px;
+    }
+  }
+  @media (max-width: 830px) {
+    .application_page {
+      flex-direction: column-reverse;
+      gap: 0;
+    }
+    .application_page form {
+      padding-top: 0;
+    }
+  }
+  @media (max-width: 411px) {
+    .btn {
+      min-width: 100%;
+    }
+  }
+  @media (max-width: 600px) {
+    .jobs-list {
+      grid-template-columns: 1fr;
+    }
+  }
