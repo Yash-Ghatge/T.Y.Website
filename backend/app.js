@@ -52,7 +52,7 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/job", jobRouter);
 app.use("/api/v1/application", applicationRouter);
 
-newsLetterCron()
+// newsLetterCron()
 connection();
 app.use(errorMiddleware);
 
