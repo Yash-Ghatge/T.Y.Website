@@ -16,9 +16,9 @@ config({ path: "./config/config.env" });
 
 app.use(
   cors({
-    origin: [process.env.FRONTEND_URL],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    origin: ["http://localhost:5173", "https://yash-jobportal.netlify.app"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    credentials: true
   })
 );
 app.use((req, res, next) => {
