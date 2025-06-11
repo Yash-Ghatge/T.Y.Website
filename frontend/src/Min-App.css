@@ -10,7 +10,7 @@
       padding: 10px;
     }
   }
-  @media (max-width: 1320px) {
+  /* @media (max-width: 1320px) {
     .navbar .logo {
       flex: none;
       width: fit-content;
@@ -21,8 +21,8 @@
     .navbar .logo img {
       width: 75px;
     }
-  }
-  @media (max-width: 1140px) {
+  } */
+  /* @media (max-width: 1140px) {
     .navbar {
       flex-wrap: wrap;
       height: 120px;
@@ -45,8 +45,8 @@
       height: 200px;
       transition: 0.3s;
     }
-  }
-  @media (max-width: 920px) {
+  } */
+  /* @media (max-width: 920px) {
     .navbar {
       padding: 20px;
     }
@@ -63,8 +63,8 @@
       height: 380px;
       transition: 0.3s;
     }
-  }
-  @media (max-width: 470px) {
+  } */
+  /* @media (max-width: 470px) {
     .navbar .logo {
       gap: 10px;
     }
@@ -81,7 +81,60 @@
       height: 340px;
       transition: 0.3s;
     }
+  } */
+
+  @media (max-width: 1140px) {
+  .navbar {
+    flex-wrap: wrap;
+    padding: 16px 40px;
+    height: auto;
   }
+
+  .navbar .hamburger {
+    display: block;
+  }
+
+  .navbar .links {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+    height: 0;
+    transition: height 0.3s ease;
+  }
+
+  .navbar .links ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    padding: 15px 0;
+  }
+
+  .navbar .links ul li {
+    width: 100%;
+  }
+
+  .navbar .links ul li a {
+    padding: 10px 0;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #eee;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 12px 20px;
+  }
+
+  .navbar .logo h4 {
+    font-size: 20px;
+  }
+
+  .navbar .logo img {
+    width: 40px;
+  }
+}
   @media (max-width: 950px) {
     .notfound .content h1 {
       font-size: 3.5rem;
