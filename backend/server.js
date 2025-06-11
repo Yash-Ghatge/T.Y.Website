@@ -8,7 +8,7 @@ cloudinary.v2.config({
 });
 
 app.get('/',(req,res)=>{
-    res.send("API is Working")
+    res.send("API is Working and this is the job portal website")
 })
 
 app.listen(process.env.PORT, () => {
