@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -7,7 +7,26 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { isAuthenticated } = useSelector((state) => state.user);
 
-  const closeMenu = () => setOpen(false);
+  const closeMenu = () => {
+    setOpen(false);
+    document.body.classList.remove('menu-open');
+  };
+
+  const toggleMenu = () => {
+    setOpen(!open);
+    if (!open) {
+      document.body.classList.add('menu-open');
+    } else {
+      document.body.classList.remove('menu-open');
+    }
+  };
+
+  // Clean up body class on component unmount
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('menu-open');
+    };
+  }, []);
 
   return (
     <nav className="navbar">
@@ -27,7 +46,7 @@ const Navbar = () => {
         </ul>
       </div>
       
-      <div className={`hamburger ${open ? "open" : ""}`} onClick={() => setOpen(!open)}>
+      <div className={`hamburger ${open ? "open" : ""}`} onClick={toggleMenu}>
         <span></span>
         <span></span>
         <span></span>
