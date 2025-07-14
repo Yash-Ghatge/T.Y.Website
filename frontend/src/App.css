@@ -21,73 +21,7 @@ body {
   overflow-x: hidden;
 }
 
-/* Hide spinner buttons */
-input::-webkit-inner-spin-button,
-input::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-
-/* Modern Button Styles */
-.btn,
-.black_btn,
-.outline_btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 12px 24px;
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  min-width: 120px;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
-}
-
-.black_btn {
-  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
-  color: white;
-  box-shadow: 0 4px 15px rgba(26, 32, 44, 0.4);
-}
-
-.black_btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(26, 32, 44, 0.6);
-  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
-}
-
-.outline_btn {
-  background: transparent;
-  color: #667eea;
-  border: 2px solid #667eea;
-  backdrop-filter: blur(10px);
-}
-
-.outline_btn:hover {
-  background: #667eea;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-}
-
-/* REACT NAVBAR STYLES */
+/* NAVBAR STYLES - Optimized for your React component */
 .navbar {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px);
@@ -103,10 +37,10 @@ input::-webkit-outer-spin-button {
   transition: all 0.3s ease;
 }
 
+/* Logo Styles */
 .navbar .logo {
   display: flex;
   align-items: center;
-  gap: 16px;
   z-index: 1001;
 }
 
@@ -128,6 +62,7 @@ input::-webkit-outer-spin-button {
 .navbar .links {
   display: flex;
   align-items: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .navbar .links ul {
@@ -231,7 +166,7 @@ input::-webkit-outer-spin-button {
     z-index: 1000;
   }
 
-  /* Show mobile menu when active */
+  /* Show mobile menu when show_navbar class is active */
   .navbar.show_navbar .links {
     left: 0;
   }
@@ -246,7 +181,32 @@ input::-webkit-outer-spin-button {
 
   .navbar .links ul li {
     width: 100%;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+  }
+
+  /* Animate menu items when navbar is shown */
+  .navbar.show_navbar .links ul li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .navbar.show_navbar .links ul li:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+
+  .navbar.show_navbar .links ul li:nth-child(2) {
+    transition-delay: 0.2s;
+  }
+
+  .navbar.show_navbar .links ul li:nth-child(3) {
+    transition-delay: 0.3s;
+  }
+
+  .navbar.show_navbar .links ul li:nth-child(4) {
+    transition-delay: 0.4s;
   }
 
   .navbar .links ul li a {
@@ -279,35 +239,6 @@ input::-webkit-outer-spin-button {
     border-color: rgba(255, 255, 255, 0.3);
   }
 
-  /* Mobile menu animation effects */
-  .navbar .links ul li {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: none;
-  }
-
-  .navbar.show_navbar .links ul li {
-    opacity: 1;
-    transform: translateY(0);
-    animation: slideInUp 0.6s ease forwards;
-  }
-
-  .navbar.show_navbar .links ul li:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-
-  .navbar.show_navbar .links ul li:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-
-  .navbar.show_navbar .links ul li:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-
-  .navbar.show_navbar .links ul li:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-
   /* Hamburger animation when menu is open */
   .navbar.show_navbar .hamburger {
     color: #667eea;
@@ -315,7 +246,7 @@ input::-webkit-outer-spin-button {
     transform: rotate(90deg);
   }
 
-  /* Add overlay effect */
+  /* Add overlay effect when menu is open */
   .navbar.show_navbar::before {
     content: '';
     position: fixed;
@@ -326,6 +257,11 @@ input::-webkit-outer-spin-button {
     background: rgba(0, 0, 0, 0.3);
     z-index: 999;
     animation: fadeIn 0.3s ease;
+  }
+
+  /* Prevent body scroll when menu is open */
+  .navbar.show_navbar ~ * {
+    overflow: hidden;
   }
 }
 
@@ -353,18 +289,66 @@ input::-webkit-outer-spin-button {
   }
 }
 
-/* Animations */
-@keyframes slideInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Button Styles */
+.btn,
+.black_btn,
+.outline_btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  min-width: 120px;
+  position: relative;
+  overflow: hidden;
 }
 
+.btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}
+
+.black_btn {
+  background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+  color: white;
+  box-shadow: 0 4px 15px rgba(26, 32, 44, 0.4);
+}
+
+.black_btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(26, 32, 44, 0.6);
+  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+}
+
+.outline_btn {
+  background: transparent;
+  color: #667eea;
+  border: 2px solid #667eea;
+  backdrop-filter: blur(10px);
+}
+
+.outline_btn:hover {
+  background: #667eea;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+}
+
+/* Animations */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -425,11 +409,46 @@ input::-webkit-outer-spin-button {
   box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
 }
 
-.hero-image img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 3%;
+  }
+  
+  .hero-content {
+    max-width: 100%;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
 }
 
 /* Services Section */
