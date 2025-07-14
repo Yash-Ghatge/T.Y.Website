@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import "./Navbar.css";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -14,7 +14,7 @@ const Navbar = () => {
       <div className="logo">
         <img src="/j.jpg" alt="logo" />
       </div>
-
+      
       <div className={`nav-menu ${open ? "open" : ""}`}>
         <ul>
           <li><Link to="/" onClick={closeMenu}>Home</Link></li>
@@ -26,7 +26,7 @@ const Navbar = () => {
           )}
         </ul>
       </div>
-
+      
       <div className={`hamburger ${open ? "open" : ""}`} onClick={() => setOpen(!open)}>
         <span></span>
         <span></span>
