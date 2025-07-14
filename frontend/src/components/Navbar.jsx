@@ -1,95 +1,44 @@
-// import  { useState } from "react";
-// import { useSelector } from "react-redux";
-// import { Link } from "react-router-dom";
-// import { GiHamburgerMenu } from "react-icons/gi";
-// const Navbar = () => {
-//   const [show, setShow] = useState(false);
-//   const { isAuthenticated } = useSelector((state) => state.user);
-//   return (
-//     <>
-//       <nav className={show ? "navbar show_navbar" : "navbar"}>
-//         <div className="logo">
-//           <img src="/j.jpg" alt="logo" />
-//         </div>
-//         <div className="links">
-//           <ul>
-//             <li>
-//               <Link to={"/"} onClick={() => setShow(!show)}>
-//                 HOME
-//               </Link>
-//             </li>
-//             <li>
-//               <Link to={"/jobs"} onClick={() => setShow(!show)}>
-//                 JOBS
-//               </Link>
-//             </li>
-//             {isAuthenticated ? (
-//               <li>
-//                 <Link to={"/dashboard"} onClick={() => setShow(!show)}>
-//                   DASHBOARD
-//                 </Link>
-//               </li>
-//             ) : (
-//               <li>
-//                 <Link to={"/login"} onClick={() => setShow(!show)}>
-//                   LOGIN
-//                 </Link>
-//               </li>
-//             )}
-//           </ul>
-//         </div>
-//         <GiHamburgerMenu className="hamburger" onClick={() => setShow(!show)} />
-//       </nav>
-//     </>
-//   );
-// };
-
-// export default Navbar;
-
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import "./Navbar.css";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
   const { isAuthenticated } = useSelector((state) => state.user);
 
+  const closeMenu = () => setShow(false);
+
   return (
-    <nav className={`navbar ${show ? "show_navbar" : ""}`}>
+    <nav className="navbar">
       <div className="logo">
-        <img src="/j.jpg" alt="logo" />
+        <img src="/j.jpg" alt="Logo" />
       </div>
-      <div className="links">
+
+      {/* Navigation Links */}
+      <div className={`nav-links ${show ? "active" : ""}`}>
         <ul>
           <li>
-            <Link to={"/"} onClick={() => setShow(false)}>
-              HOME
-            </Link>
+            <Link to="/" onClick={closeMenu}>Home</Link>
           </li>
           <li>
-            <Link to={"/jobs"} onClick={() => setShow(false)}>
-              JOBS
-            </Link>
+            <Link to="/jobs" onClick={closeMenu}>Jobs</Link>
           </li>
           {isAuthenticated ? (
             <li>
-              <Link to={"/dashboard"} onClick={() => setShow(false)}>
-                DASHBOARD
-              </Link>
+              <Link to="/dashboard" onClick={closeMenu}>Dashboard</Link>
             </li>
           ) : (
             <li>
-              <Link to={"/login"} onClick={() => setShow(false)}>
-                LOGIN
-              </Link>
+              <Link to="/login" onClick={closeMenu}>Login</Link>
             </li>
           )}
         </ul>
       </div>
 
-      {/* Hamburger Icon */}
+      {/* Hamburger */}
       <div
-        className={`hamburger ${show ? "menu-open" : ""}`}
+        className={`hamburger ${show ? "open" : ""}`}
         onClick={() => setShow(!show)}
       >
         <span></span>
