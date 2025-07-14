@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import { clearAllJobErrors, fetchJobs } from "../store/slices/jobSlice";
 import Spinner from "../components/Spinner";
-import { FaSearch } from "react-icons/fa";
+// import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Jobs = () => {
@@ -79,7 +79,7 @@ const Jobs = () => {
               onChange={(e) => setSearchKeyword(e.target.value)}
             />
             <button onClick={handleSearch}>Find Job</button>
-            <FaSearch />
+            {/* <FaSearch /> */}
           </div>
           <div className="wrapper">
             <div className="filter-bar">
