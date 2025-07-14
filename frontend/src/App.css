@@ -21,13 +21,7 @@ body {
   overflow-x: hidden;
 }
 
-/* General Reset */
-
-
-
-
-
-/* Navbar base */
+/* NAVBAR BASE */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -35,38 +29,37 @@ body {
   background-color: #1f2937;
   padding: 1rem 2rem;
   position: relative;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .logo img {
-  width: 50px;
-  height: auto;
+  width: 45px;
   border-radius: 50%;
 }
 
-/* Desktop Links */
-.nav-links {
+/* NAV MENU (DESKTOP) */
+.nav-menu {
   display: flex;
 }
 
-.nav-links ul {
+.nav-menu ul {
   display: flex;
   list-style: none;
   gap: 2rem;
 }
 
-.nav-links ul li a {
+.nav-menu ul li a {
   color: white;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.3s ease;
+  transition: color 0.3s;
 }
 
-.nav-links ul li a:hover {
+.nav-menu ul li a:hover {
   color: #3b82f6;
 }
 
-/* Hamburger */
+/* HAMBURGER ICON */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -74,18 +67,17 @@ body {
   width: 25px;
   height: 18px;
   cursor: pointer;
-  z-index: 1100;
+  z-index: 200;
 }
 
 .hamburger span {
   height: 3px;
   width: 100%;
   background: white;
-  transition: 0.3s ease;
+  transition: all 0.3s ease-in-out;
   border-radius: 2px;
 }
 
-/* Hamburger animation */
 .hamburger.open span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -96,39 +88,42 @@ body {
   transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* Mobile Styles */
+/* MOBILE STYLES */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
   }
 
-  .nav-links {
+  .nav-menu {
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
     background-color: #1f2937;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+    pointer-events: none;
+    opacity: 0;
     flex-direction: column;
-    overflow: hidden;
-    max-height: 0;
-    transition: max-height 0.3s ease-in-out;
   }
 
-  .nav-links.active {
-    max-height: 300px;
+  .nav-menu.open {
+    transform: translateY(0);
+    pointer-events: auto;
+    opacity: 1;
   }
 
-  .nav-links ul {
+  .nav-menu ul {
     flex-direction: column;
-    padding: 1rem 2rem;
+    padding: 1.5rem 2rem;
     gap: 1.5rem;
   }
 
-  .nav-links ul li a {
-    font-size: 1.1rem;
-    color: white;
+  .nav-menu ul li a {
+    font-size: 1.2rem;
   }
 }
+
 
 
 

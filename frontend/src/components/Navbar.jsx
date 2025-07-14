@@ -4,43 +4,30 @@ import { Link } from "react-router-dom";
 
 
 const Navbar = () => {
-  const [show, setShow] = useState(false);
+  const [open, setOpen] = useState(false);
   const { isAuthenticated } = useSelector((state) => state.user);
 
-  const closeMenu = () => setShow(false);
+  const closeMenu = () => setOpen(false);
 
   return (
     <nav className="navbar">
       <div className="logo">
-        <img src="/j.jpg" alt="Logo" />
+        <img src="/j.jpg" alt="logo" />
       </div>
 
-      {/* Navigation Links */}
-      <div className={`nav-links ${show ? "active" : ""}`}>
+      <div className={`nav-menu ${open ? "open" : ""}`}>
         <ul>
-          <li>
-            <Link to="/" onClick={closeMenu}>Home</Link>
-          </li>
-          <li>
-            <Link to="/jobs" onClick={closeMenu}>Jobs</Link>
-          </li>
+          <li><Link to="/" onClick={closeMenu}>Home</Link></li>
+          <li><Link to="/jobs" onClick={closeMenu}>Jobs</Link></li>
           {isAuthenticated ? (
-            <li>
-              <Link to="/dashboard" onClick={closeMenu}>Dashboard</Link>
-            </li>
+            <li><Link to="/dashboard" onClick={closeMenu}>Dashboard</Link></li>
           ) : (
-            <li>
-              <Link to="/login" onClick={closeMenu}>Login</Link>
-            </li>
+            <li><Link to="/login" onClick={closeMenu}>Login</Link></li>
           )}
         </ul>
       </div>
 
-      {/* Hamburger */}
-      <div
-        className={`hamburger ${show ? "open" : ""}`}
-        onClick={() => setShow(!show)}
-      >
+      <div className={`hamburger ${open ? "open" : ""}`} onClick={() => setOpen(!open)}>
         <span></span>
         <span></span>
         <span></span>
