@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import "./Navbar.css";
+
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
