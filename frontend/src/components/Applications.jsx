@@ -52,22 +52,22 @@ const Applications = () => {
                     <span>Job Title: </span> {element.jobInfo.jobTitle}
                   </p>
                   <p className="application-detail">
-                    <span>Applicant's Name: </span> {element.jobSeekerInfo.name}
+                    <span>Applicants Name: </span> {element.jobSeekerInfo.name}
                   </p>
                   <p className="application-detail">
-                    <span>Applicant's Email: </span>{" "}
+                    <span>Applicants Email: </span>{" "}
                     {element.jobSeekerInfo.email}
                   </p>
                   <p className="application-detail">
-                    <span>Applicant's Phone: </span>{" "}
+                    <span>Applicants Phone: </span>{" "}
                     {element.jobSeekerInfo.phone}
                   </p>
                   <p className="application-detail">
-                    <span>Applicant's Address: </span>{" "}
+                    <span>Applicants Address: </span>{" "}
                     {element.jobSeekerInfo.address}
                   </p>
                   <p className="application-detail">
-                    <span>Applicant's Cover Letter: </span>
+                    <span>Applicants Cover Letter: </span>
                     <textarea
                       className="cover-letter"
                       value={element.jobSeekerInfo.coverLetter}

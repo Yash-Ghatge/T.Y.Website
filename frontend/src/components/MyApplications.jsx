@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import  { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -11,7 +11,7 @@ import {
 import Spinner from "../components/Spinner";
 
 const MyApplications = () => {
-  const { user, isAuthenticated } = useSelector((state) => state.user);
+  useSelector((state) => state.user);
   const { loading, error, applications, message } = useSelector(
     (state) => state.applications
   );

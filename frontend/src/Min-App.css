@@ -1,0 +1,244 @@
+@media (max-width: 1024px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 60px 3%;
+  }
+  
+  .hero-content {
+    max-width: 100%;
+    margin-bottom: 40px;
+  }
+  
+  .services,
+  .howItWorks {
+    padding: 80px 3%;
+  }
+  
+  .jobs,
+  .account {
+    padding: 40px 3%;
+  }
+  
+  .jobs .wrapper {
+    flex-direction: column;
+  }
+  
+  .jobs .wrapper .filter-bar {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .account .container {
+    flex-direction: column;
+  }
+  
+  .account .container .sidebar {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+  
+  .authPage .banner {
+    margin-left: 0;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero p {
+    font-size: 1.1rem;
+  }
+  
+  .services h3,
+  .howItWorks h3,
+  .applications-header,
+  .myjobs-header {
+    font-size: 2rem;
+  }
+  
+  .services .grid,
+  .jobs .container .jobs_container,
+  .jobs-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .services .grid {
+    gap: 24px;
+  }
+  
+  .services .grid .card,
+  .howItWorks .container .card {
+    padding: 32px 24px;
+  }
+  
+  .authPage {
+    padding: 20px;
+  }
+  
+  .authPage .container {
+    padding: 32px 24px;
+  }
+  
+  .authPage .banner {
+    display: none;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .jobs .search-tab-wrapper input {
+    padding: 16px 16px 16px 20px;
+  }
+  
+  .jobs .search-tab-wrapper button {
+    position: static;
+    width: 100%;
+    margin-top: 12px;
+    border-radius: 12px;
+  }
+  
+  .mobile-filter {
+    display: block;
+  }
+  
+  .sidebar_icon {
+    display: block;
+  }
+  
+  .account .container .sidebar {
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 80%;
+    height: 100vh;
+    z-index: 1001;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+  }
+  
+  .account .container .sidebar.active {
+    left: 0;
+  }
+  
+  footer {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  footer div {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 4%;
+  }
+  
+  .hero h1 {
+    font-size: 2rem;
+  }
+  
+  .hero p {
+    font-size: 1rem;
+  }
+  
+  .services,
+  .howItWorks {
+    padding: 60px 4%;
+  }
+  
+  .services h3,
+  .howItWorks h3,
+  .applications-header,
+  .myjobs-header {
+    font-size: 1.8rem;
+  }
+  
+  .services .grid .card,
+  .howItWorks .container .card,
+  .application-card,
+  .job-card {
+    padding: 24px 20px;
+  }
+  
+  .authPage .container {
+    padding: 24px 16px;
+  }
+  
+  .jobs,
+  .account {
+    padding: 30px 4%;
+  }
+  
+  .jobs .container .jobs_container .card {
+    padding: 24px 20px;
+  }
+  
+  .account_components {
+    padding: 30px 20px;
+  }
+  
+  .btn,
+  .black_btn,
+  .outline_btn {
+    padding: 14px 20px;
+    font-size: 14px;
+    min-width: 100px;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Add animation classes */
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
+}

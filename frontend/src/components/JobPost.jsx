@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   clearAllJobErrors,
@@ -51,11 +50,11 @@ const JobPost = () => {
     "Mumbai", "Delhi", "Bangalore", "Hyderabad", "Ahmedabad", "Chennai", "Kolkata", "Surat", "Pune", "Jaipur", "Lucknow", "Kanpur", "Indore", "Thane", "Bhopal", "Noida", "Gandhinagar", 
   ];
 
-  const { isAuthenticated, user } = useSelector((state) => state.user);
+  useSelector((state) => state.user);
   const { loading, error, message } = useSelector((state) => state.jobs);
   const dispatch = useDispatch();
 
-  const handlePostJob = (e) => {
+  const handlePostJob = () => {
     const formData = new FormData();
     formData.append("title", title);
     formData.append("jobType", jobType);
