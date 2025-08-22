@@ -1,15 +1,4 @@
-/* =========================================
-   JOB PORTAL – GLOBAL STYLESHEET (v2)
-   Component map:
-   [Base] [Buttons] [Inputs] [Cards]
-   [Navbar] [Hero] [Services] [HowItWorks]
-   [Jobs] [Dashboard/Account + Sidebar]
-   [Applications] [MyJobs]
-   [ApplicationPage] [Auth]
-   [NotFound] [Footer] [Misc]
-   ========================================= */
 
-/* ========== [Base / Theme Tokens] ========== */
 :root{
   --nav-h: 72px;
 
@@ -249,7 +238,8 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 .jobs{ padding:14px 0 32px; }
 
 .search-tab-wrapper{
-  position: sticky; top: calc(var(--nav-h) + 8px); z-index: 100;
+  position: fixed;  
+  top: calc(var(--nav-h) + 8px); z-index: 100; 
   display: grid; grid-template-columns: 1fr auto; gap: 10px;
   background: rgba(247,248,251,.85);
   padding: 10px; border-radius: 12px;
@@ -512,9 +502,7 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 }
 .notfound .btn{ margin-top:12px; }
 
-/* =========================================
-   [Footer]
-   ========================================= */
+
 footer{
   margin-top:30px; background:#0f172a; color:#e5e7eb; padding:26px 20px;
 }
@@ -535,9 +523,7 @@ footer img{ height:46px; width:auto; border-radius:10px; }
 @media (max-width:900px){ footer > div{ grid-template-columns:1fr 1fr; } }
 @media (max-width:560px){ footer > div{ grid-template-columns:1fr; } }
 
-/* =========================================
-   [Misc]
-   ========================================= */
+
 section:first-of-type{ margin-top: 6px; }
 .Toastify{ z-index: 2000; }
 
