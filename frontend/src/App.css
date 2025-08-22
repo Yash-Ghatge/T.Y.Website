@@ -238,7 +238,7 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 .jobs{ padding:14px 0 32px; }
 
 .search-tab-wrapper{
-  position: fixed;  
+  position: sticky;  
   top: calc(var(--nav-h) + 8px); z-index: 100; 
   display: grid; grid-template-columns: 1fr auto; gap: 10px;
   background: rgba(247,248,251,.85);
@@ -343,21 +343,55 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 .banner{ position:relative; min-height:300px; }
 
 /* ---- Sidebar Toggle Arrow Button ---- */
-.sidebar_icon{
+.search-tab-wrapper {
+  position: fixed; /* Instead of sticky */
+  top: calc(var(--nav-h) + 8px);
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  background: rgba(247, 248, 251, 0.95);
+  padding: 10px;
+  border-radius: 12px;
+  margin: 0 20px 14px;
+  backdrop-filter: blur(6px);
+  border: 1px solid #eef0f4;
+}
+
+/* ------------------------------
+   Sidebar Icon - Mobile Only
+------------------------------ */
+.sidebar_icon {
   position: fixed;
   left: 12px;
   top: calc(var(--nav-h) + 10px);
-  width: 44px; height: 44px;
+  width: 44px;
+  height: 44px;
   border-radius: 999px;
   background: linear-gradient(135deg, #6366f1, #4f46e5);
   color: #fff;
-  display: grid; place-items: center;
+  display: grid;
+  place-items: center;
   cursor: pointer;
   box-shadow: var(--shadow);
-  z-index: 1400; /* above everything */
+  z-index: 1400;
 }
-.sidebar_icon .left_arrow,
-.sidebar_icon .right_arrow{ font-size: 20px; line-height: 1; }
+
+/* Hide sidebar icon on large screens */
+@media (min-width: 1024px) {
+  .sidebar_icon {
+    display: none;
+  }
+}
+
+/* Show sidebar icon only on small screens */
+@media (max-width: 1023px) {
+  .sidebar_icon {
+    display: grid;
+  }
+}
 
 /* ---- Mobile Drawer Behavior (FIX) ----
    - Off-canvas from the LEFT
