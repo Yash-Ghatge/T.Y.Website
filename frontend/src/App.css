@@ -265,7 +265,7 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 
   .nav-menu li {
     width: 100%;
-    border-top: 1px solid #f1f3f7;
+    /* border-top: 1px solid #f1f3f7; */
   }
 
   .nav-menu a {
