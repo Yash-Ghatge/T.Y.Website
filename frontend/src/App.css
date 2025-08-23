@@ -131,54 +131,168 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 /* =========================================
    [Navbar]
    ========================================= */
-.navbar{
-  position: fixed; inset: 0 0 auto 0;
-  height: var(--nav-h);
-  display: flex; align-items: center; justify-content: space-between;
+/* 🌟 Navbar Base */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 0 20px;
-  background: rgba(255,255,255,.85);
-  backdrop-filter: saturate(160%) blur(8px);
-  border-bottom: 1px solid #eef0f4;
-  z-index: 1200; /* keep navbar on top */
+  background: #fff;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 1200;
+  transition: all 0.3s ease-in-out;
 }
-.navbar .logo img{ height:42px; width:auto; display:block; border-radius:10px; }
 
-.nav-menu{ display:flex; align-items:center; }
-.nav-menu ul{ list-style:none; display:flex; gap:22px; padding:0; margin:0; }
-.nav-menu a{
-  color: var(--text);
+/* 🌟 Logo Styling */
+.logo img {
+  height: 42px;
+  width: auto;
+  display: block;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* 🌟 Nav Menu (Desktop) */
+.nav-menu {
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu ul {
+  list-style: none;
+  display: flex;
+  gap: 24px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-menu li {
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu a {
+  color: #333;
   font-weight: 600;
-  padding: 10px 12px;
-  border-radius: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.2s ease;
 }
-.nav-menu a:hover{ background:#f3f4f6; }
 
-.hamburger{ display:none; width:34px; height:26px; position:relative; cursor:pointer; }
-.hamburger span{
-  position:absolute; left:0; right:0; height:3px; background:var(--text);
-  border-radius:2px; transition:.25s;
+.nav-menu a:hover {
+  background: #f3f4f6;
 }
-.hamburger span:nth-child(1){ top:3px; }
-.hamburger span:nth-child(2){ top:11px; }
-.hamburger span:nth-child(3){ top:19px; }
-.hamburger.open span:nth-child(1){ transform: translateY(8px) rotate(45deg); }
-.hamburger.open span:nth-child(2){ opacity:0; }
-.hamburger.open span:nth-child(3){ transform: translateY(-8px) rotate(-45deg); }
 
-@media (max-width: 900px){
-  .hamburger{ display:block; }
-  .nav-menu{
-    position: fixed; top: var(--nav-h); right: 0; left: 0;
-    background:#fff; border-bottom:1px solid #eef0f4;
-    transform: translateY(-110%); transition: .25s ease;
-    box-shadow: var(--shadow); z-index: 1300;
+/* 🌟 Hamburger Icon */
+.hamburger {
+  display: none;
+  width: 34px;
+  height: 26px;
+  position: relative;
+  cursor: pointer;
+  z-index: 1500;
+}
+
+.hamburger span {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #333;
+  border-radius: 2px;
+  transition: 0.25s ease-in-out;
+}
+
+.hamburger span:nth-child(1) {
+  top: 3px;
+}
+.hamburger span:nth-child(2) {
+  top: 11px;
+}
+.hamburger span:nth-child(3) {
+  top: 19px;
+}
+
+/* 🌟 When Hamburger Opens */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* 🌟 Mobile Menu */
+@media (max-width: 900px) {
+  /* Show hamburger on mobile */
+  .hamburger {
+    display: block;
   }
-  .nav-menu.open{ transform: translateY(0); }
-  .nav-menu ul{ flex-direction: column; gap:0; }
-  .nav-menu li{ border-top: 1px solid #f1f3f7; }
-  .nav-menu a{ display:block; padding:16px 20px; }
-  body.menu-open{ overflow:hidden; }
+
+  /* Hide menu initially */
+  .nav-menu {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: #fff;
+    transform: translateY(-120%);
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1300;
+    padding: 10px 0;
+  }
+
+  /* Open menu */
+  .nav-menu.open {
+    transform: translateY(0);
+  }
+
+  /* Stack items vertically */
+  .nav-menu ul {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+
+  .nav-menu li {
+    width: 100%;
+    border-top: 1px solid #f1f3f7;
+  }
+
+  .nav-menu a {
+    display: block;
+    padding: 16px 20px;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  /* Disable body scroll when menu open */
+  body.menu-open {
+    overflow: hidden;
+  }
 }
+
+/* 🌟 Tiny Mobile Screens */
+@media (max-width: 450px) {
+  .navbar {
+    padding: 0 12px;
+  }
+
+  .nav-menu a {
+    font-size: 14px;
+    padding: 14px 16px;
+  }
+}
+
 
 /* =========================================
    [Hero]
