@@ -1,4 +1,3 @@
-
 :root{
   --nav-h: 72px;
 
@@ -23,8 +22,14 @@
   --radius-xl: 20px;
 
   --container: 1200px;
+
+  /* layout helpers */
+  --sidebar-w: 300px;        /* default desktop sidebar width */
+  --content-gap: 20px;       /* gap between columns */
+  --search-h: 64px;          /* fixed search bar height (including padding) */
 }
 
+/* ---------- global ---------- */
 *,
 *::before,
 *::after{ box-sizing: border-box; }
@@ -38,7 +43,7 @@ html{
 
 body{
   margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji","Segoe UI Emoji";
   color: var(--text);
   background: var(--bg);
   line-height: 1.6;
@@ -134,7 +139,7 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
   background: rgba(255,255,255,.85);
   backdrop-filter: saturate(160%) blur(8px);
   border-bottom: 1px solid #eef0f4;
-  z-index: 1000;
+  z-index: 1200; /* keep navbar on top */
 }
 .navbar .logo img{ height:42px; width:auto; display:block; border-radius:10px; }
 
@@ -166,7 +171,7 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
     position: fixed; top: var(--nav-h); right: 0; left: 0;
     background:#fff; border-bottom:1px solid #eef0f4;
     transform: translateY(-110%); transition: .25s ease;
-    box-shadow: var(--shadow); z-index: 1100;
+    box-shadow: var(--shadow); z-index: 1300;
   }
   .nav-menu.open{ transform: translateY(0); }
   .nav-menu ul{ flex-direction: column; gap:0; }
@@ -237,73 +242,116 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
    ========================================= */
 .jobs{ padding:14px 0 32px; }
 
+/* -------- FIXED SEARCH BAR (desktop aligned to content column) --------
+   - On large screens we align the search bar to the job-cards column inside the centered container.
+   - On smaller screens it becomes full-width (left/right: 20px).
+------------------------------------------------------------------------*/
 .search-tab-wrapper {
-  position: fixed; /* Keep it fixed */
-  top: calc(var(--nav-h) + 8px); /* Below navbar */
-  left: 300px; /* Align with job cards, skip sidebar width */
-  right: 20px; /* Right margin */
-  z-index: 1000; /* Keep on top */
+  position: fixed;
+  top: calc(var(--nav-h) + 8px); /* below navbar */
+  height: var(--search-h);
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 10px;
-  background: rgba(247, 248, 251, 0.95);
-  padding: 10px;
+  align-items: center;
+  padding: 8px 12px;
   border-radius: 12px;
   backdrop-filter: blur(6px);
   border: 1px solid #eef0f4;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  margin: 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  background: rgba(247, 248, 251, 0.95);
+  z-index: 1100; /* below navbar (1200) but above page content */
+  max-width: calc(var(--container) - var(--sidebar-w) - 32px); /* don't exceed content column width */
+  width: 100%;
+  /* default: centered and aligned relative to container via transform trick */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-
-
-/* For smaller screens where sidebar collapses */
-@media (max-width: 1024px) {
-  .search-tab-wrapper {
-    left: 20px; /* Full width when sidebar hides */
-    right: 20px;
+/* Desktop: position the search bar so it starts after the sidebar inside the centered container */
+@media (min-width: 1280px) {
+  .search-tab-wrapper{
+    left: calc(50% - (var(--container) / 2) + var(--sidebar-w) + 16px);
+    transform: none;
+    width: calc(var(--container) - var(--sidebar-w) - 32px);
+    max-width: calc(var(--container) - var(--sidebar-w) - 32px);
   }
 }
 
-.jobs .wrapper{
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 20px;
-  align-items: start;
-  padding-top: 70px;
+/* Tablet and below: full width with safe margins */
+@media (max-width: 1279px) {
+  .search-tab-wrapper{
+    left: 20px;
+    right: 20px;
+    transform: none;
+    width: auto;
+    max-width: calc(100% - 40px);
+  }
 }
 
+/* Small mobile: make search bar slightly taller for touch */
+@media (max-width: 480px) {
+  :root { --search-h: 74px; }
+  .search-tab-wrapper{ height: var(--search-h); padding: 10px 14px; }
+}
+
+/* Add top spacing to wrapper so the fixed search bar does not overlap content */
+.jobs .wrapper{
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  gap: var(--content-gap);
+  align-items: start;
+  padding-top: calc(var(--search-h) + 22px); /* ensure content starts below search bar */
+}
+
+/* responsive adjustments for wrapper columns */
 @media (max-width: 1150px) {
+  :root { --sidebar-w: 260px; }
   .jobs .wrapper {
     grid-template-columns: 260px 1fr;
   }
 }
+
+/* On narrow screens (mobile) we stack columns and add larger top padding */
 @media (max-width: 800px) {
   .jobs .wrapper {
     grid-template-columns: 1fr;
-    padding-top: 120px; /* More padding for mobile */
+    padding-top: calc(var(--search-h) + 28px);
   }
 }
 
+/* Sidebar / filter bar */
 .filter-bar{
-  position: sticky; top: calc(var(--nav-h) + 78px);
+  position: sticky;
+  top: calc(var(--nav-h) + 12px); /* default on desktop keep just below navbar */
   background: var(--panel);
   border: 1px solid #eef0f4;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow);
   padding: 16px;
+  z-index: 5;
 }
 .filter-bar .cities{ margin-bottom:18px; }
 .filter-bar h2{ font-size:1rem; margin-bottom:.6rem; }
 .filter-bar label{ margin-left:8px; color:var(--text-weak); }
 
+/* When the search bar becomes full-width on smaller screens, raise sticky top so sidebar doesn't get covered */
+@media (max-width: 1279px){
+  .filter-bar { top: calc(var(--nav-h) + var(--search-h) + 12px); }
+}
+
+/* container inside jobs */
 .jobs .container{ padding:0; }
 
+/* mobile-only filter select */
 .mobile-filter{ display:none; gap:10px; margin-bottom:12px; }
 .mobile-filter select{ background:#fff; }
 
+/* jobs grid */
 .jobs_container{
-  display:grid; grid-template-columns: repeat(3,1fr); gap:16px;
+  display:grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap:16px;
 }
 .jobs_container .card{ position:relative; }
 .hiring, .hiring-multiple{
@@ -318,16 +366,17 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 .jobs_container .salary span, .jobs_container .posted span{ font-weight:700; color:var(--text); }
 .jobs_container .btn-wrapper{ margin-top:.8rem; }
 
-/* @media (max-width:1150px){
-  .jobs .wrapper{ grid-template-columns:260px 1fr; }
-  .jobs_container{ grid-template-columns: repeat(2,1fr); }
+/* responsive job columns */
+@media (max-width:1150px){
+  .jobs_container{ grid-template-columns: repeat(2, minmax(0,1fr)); }
 }
 @media (max-width:800px){
-  .jobs .wrapper{ grid-template-columns:1fr; }
-  .filter-bar{ display:none; }
+  .jobs_container{ grid-template-columns: 1fr; }
   .mobile-filter{ display:grid; grid-template-columns:1fr 1fr; }
-  .jobs_container{ grid-template-columns:1fr; }
-} */
+  .filter-bar{ display:none; } /* hide desktop filter on mobile (you already have mobile-filter) */
+}
+
+/* job-not-found image styles */
 .jobs_container img[alt="job-not-found"]{
   grid-column: 1 / -1; border-radius: var(--radius-xl); box-shadow: var(--shadow);
 }
@@ -373,27 +422,7 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 
 .banner{ position:relative; min-height:300px; }
 
-/* ---- Sidebar Toggle Arrow Button ---- */
-.search-tab-wrapper {
-  position: fixed; /* Instead of sticky */
-  top: calc(var(--nav-h) + 8px);
-  left: 0;
-  right: 0;
-  z-index: 100;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-  background: rgba(247, 248, 251, 0.95);
-  padding: 10px;
-  border-radius: 12px;
-  margin: 0 20px 14px;
-  backdrop-filter: blur(6px);
-  border: 1px solid #eef0f4;
-}
-
-/* ------------------------------
-   Sidebar Icon - Mobile Only
------------------------------- */
+/* ---- Sidebar Toggle Arrow Button (mobile) ---- */
 .sidebar_icon {
   position: fixed;
   left: 12px;
@@ -412,24 +441,15 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 
 /* Hide sidebar icon on large screens */
 @media (min-width: 1024px) {
-  .sidebar_icon {
-    display: none;
-  }
+  .sidebar_icon { display: none; }
 }
 
 /* Show sidebar icon only on small screens */
 @media (max-width: 1023px) {
-  .sidebar_icon {
-    display: grid;
-  }
+  .sidebar_icon { display: grid; }
 }
 
-/* ---- Mobile Drawer Behavior (FIX) ----
-   - Off-canvas from the LEFT
-   - High z-index to sit above content
-   - Works by toggling `.showSidebar` on `.sidebar`
-   - Optional `.sidebar-backdrop` covers page when open
------------------------------------------ */
+/* Mobile Drawer Behavior */
 @media (max-width: 900px){
   .account .container{ grid-template-columns:1fr; }
 
@@ -461,8 +481,12 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 
   /* When drawer is open, lock body scroll */
   body.menu-open{ overflow: hidden; }
+
+  /* ensure search tab doesn't hide the sidebar toggle on mobile */
+  .sidebar_icon { top: calc(var(--nav-h) + 12px + (var(--search-h) - 44px) / 2); }
 }
 
+/* keep rest of account components */
 .account_components{
   background: var(--panel);
   border: 1px solid #eef0f4;
@@ -483,7 +507,8 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 .save_change_btn_wrapper{ display:flex; justify-content:flex-end; margin-top:6px; }
 
 /* =========================================
-   [Applications]
+   [Applications / MyJobs / ApplicationPage / Auth etc]
+   (kept mostly same as original)
    ========================================= */
 .applications-container, .applications-section{ background:transparent; }
 .applications-header{ font-size:1.35rem; font-weight:800; margin-bottom:12px; }
@@ -499,9 +524,6 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 }
 .button-group{ display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
 
-/* =========================================
-   [MyJobs]
-   ========================================= */
 .myjobs-container{}
 .myjobs-header{ font-size:1.35rem; font-weight:800; margin-bottom:12px; }
 .jobs-list{ display:grid; gap:14px; }
@@ -511,9 +533,6 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 }
 .job-detail span{ font-weight:700; }
 
-/* =========================================
-   [ApplicationPage]
-   ========================================= */
 .application_page{
   display:grid; grid-template-columns:1.1fr .9fr; gap:18px;
 }
@@ -537,9 +556,6 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 }
 @media (max-width:1000px){ .application_page{ grid-template-columns:1fr; } }
 
-/* =========================================
-   [Auth]
-   ========================================= */
 .authPage{ padding:10px 0 26px; }
 .authPage .container{
   max-width:760px; background:var(--panel); border:1px solid #eef0f4;
@@ -555,9 +571,6 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
 .authPage a{ display:inline-block; text-align:center; width:100%; margin-top:6px; }
 @media (max-width:760px){ .authPage .wrapper{ grid-template-columns:1fr; } }
 
-/* =========================================
-   [NotFound]
-   ========================================= */
 .notfound{
   min-height:55vh; display:grid; place-items:center; padding:16px;
 }
@@ -566,7 +579,6 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
   border-radius: var(--radius-xl); padding:26px; box-shadow: var(--shadow);
 }
 .notfound .btn{ margin-top:12px; }
-
 
 footer{
   margin-top:30px; background:#0f172a; color:#e5e7eb; padding:26px 20px;
@@ -587,7 +599,6 @@ footer img{ height:46px; width:auto; border-radius:10px; }
 }
 @media (max-width:900px){ footer > div{ grid-template-columns:1fr 1fr; } }
 @media (max-width:560px){ footer > div{ grid-template-columns:1fr; } }
-
 
 section:first-of-type{ margin-top: 6px; }
 .Toastify{ z-index: 2000; }
