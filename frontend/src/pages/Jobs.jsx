@@ -72,9 +72,7 @@ const Jobs = () => {
         <Spinner />
       ) : (
         <section className="jobs">
-          
-          <div className="wrapper">
-            <div className="search-tab-wrapper">
+          <div className="search-tab-wrapper">
             <input
               type="text"
               value={searchKeyword}
@@ -83,6 +81,7 @@ const Jobs = () => {
             <button onClick={handleSearch}>Find Job</button>
             {/* <FaSearch /> */}
           </div>
+          <div className="wrapper">
             <div className="filter-bar">
               <div className="cities">
                 <h2>Filter Job By City</h2>
