@@ -385,17 +385,81 @@ input[disabled], textarea[disabled]{ background:#f3f4f6; color:var(--muted); }
    [Dashboard / Account + Sidebar]
    ========================================= */
 .account{ padding: 8px 0 24px; }
-.account .component_header{
+.account .component_header {
   background: var(--panel);
   border: 1px solid #eef0f4;
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow);
   padding: 16px 20px;
   margin: 0 20px 14px;
-  display:flex; justify-content:space-between; align-items:center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap; /* Allows wrapping on smaller screens */
+  gap: 8px; /* Space between elements when wrapped */
+  transition: all 0.3s ease-in-out;
 }
-.account .component_header p{ margin:0; font-weight:600; }
-.account .component_header span{ color:var(--primary); font-weight:800; }
+
+/* Text inside the header */
+.account .component_header p {
+  margin: 0;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-color, #222); /* Uses theme text color if available */
+}
+
+.account .component_header span {
+  color: var(--primary);
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+/* ----------- RESPONSIVENESS ----------- */
+
+/* For tablets (max width 1024px) */
+@media (max-width: 1024px) {
+  .account .component_header {
+    padding: 14px 16px;
+    margin: 0 16px 12px;
+  }
+
+  .account .component_header p,
+  .account .component_header span {
+    font-size: 0.95rem;
+  }
+}
+
+/* For small tablets & large phones (max width 768px) */
+@media (max-width: 768px) {
+  .account .component_header {
+    flex-direction: column; /* Stack items vertically */
+    align-items: flex-start;
+    padding: 12px 14px;
+    margin: 0 12px 10px;
+    gap: 6px;
+  }
+
+  .account .component_header p,
+  .account .component_header span {
+    font-size: 0.9rem;
+  }
+}
+
+/* For mobile phones (max width 480px) */
+@media (max-width: 480px) {
+  .account .component_header {
+    padding: 10px 12px;
+    margin: 0 10px 8px;
+  }
+
+  .account .component_header p {
+    font-size: 0.85rem;
+  }
+
+  .account .component_header span {
+    font-size: 0.85rem;
+  }
+}
 
 .account .container{
   display:grid; grid-template-columns:260px 1fr; gap:18px;
