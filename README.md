@@ -66,11 +66,11 @@ This project focuses on **performance, scalability, and modern UI/UX**.
 
 | **Homepage** | **Jobs Page** |
 |-------------|---------------|
-| ![Homepage](./client/src/assets/Home.png) | ![Jobs](./client/src/assets/Jobs.png) |
+| ![Homepage](./frontend/src/assets/Home.png) | ![Jobs](./frontend/src/assets/Jobs.png) |
 
 | **Job Details** | **Apply Page** |
 |-----------------|----------------|
-| ![Job Details](./client/src/assets/JobDetails.png) | ![Apply](./client/src/assets/Apply.png) |
+| ![Job Details](./frontend/src/assets/Apply.png) | ![Apply](./frontend/src/assets/Dashbord.png) |
 
 | **Dashboard** |
 |--------------|
